@@ -1,2 +1,2 @@
 # java
-java showcases
+java showcases(examples and tests)
