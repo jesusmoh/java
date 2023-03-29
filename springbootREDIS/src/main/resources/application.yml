@@ -1,0 +1,12 @@
+
+spring:
+  application:
+    name: ejemplo-redis
+  datasource:
+    url: jdbc:mysql://172.17.0.1:3306/userdb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: root
+    password: Sel500gq.C.m
+    platform: mysql
+  jpa:
+    hibernate:
+      ddl-auto: update
