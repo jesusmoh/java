@@ -3,6 +3,8 @@ package com.jesusmoh.services.validators.impl;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import com.jesusmoh.dto.ValidateResultDTO;
+import com.jesusmoh.dto.request.UrpUserRequestDTO;
 import com.jesusmoh.services.validators.IUrpUserValidatorService;
 
 import lombok.Data;
@@ -36,7 +38,25 @@ public class UrpUserValidatorServiceImpl implements IUrpUserValidatorService {
     private String validatorApiEmailMessages;
 
 
-	public boolean isUserNameValid(String userName) {
-        return userName.matches(validatorUserNameRegex);
-    }
+	public ValidateResultDTO isUserNameValid(String userName) {
+		ValidateResultDTO r = new ValidateResultDTO();
+		r.setValid(userName.matches(validatorUserNameRegex));
+		r.setResult((r.isValid() == false) ? validatorUserNameMessages.concat(" >> ".concat(userName)) :"");
+		return r;
+	}
+
+
+	@Override
+	public ValidateResultDTO isUrpUserValid(UrpUserRequestDTO dto) {
+		ValidateResultDTO r = new ValidateResultDTO();
+		
+		if(dto!=null) {
+			r =isUserNameValid(dto.getUserName());
+			if(r.isValid()==false)
+				return r;
+			
+		}
+		
+		return r;
+	}
 }
