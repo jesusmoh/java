@@ -5,9 +5,6 @@ import org.springframework.stereotype.Repository;
 import com.jesusmoh.persistence.entities.UrpUser;
 import com.jesusmoh.persistence.projections.IUrpWeakUser;
 
-import jakarta.persistence.NamedQuery;
-
-import java.util.List;
 
 import org.springframework.data.jpa.repository.*;
 
@@ -15,6 +12,7 @@ import org.springframework.data.jpa.repository.*;
 @Repository
 public interface UrpUsersCrudRepository extends JpaRepository<UrpUser,Long>{
 
+	
 	UrpUser findByUserName(String username);
 	
 	UrpUser deleteByUserName(String username);

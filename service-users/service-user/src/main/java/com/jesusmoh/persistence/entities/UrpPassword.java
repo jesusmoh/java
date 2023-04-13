@@ -12,7 +12,6 @@ import java.util.Set;
  */
 @Entity
 @Table(name="urp_passwords")
-@NamedQuery(name="UrpPassword.findAll", query="SELECT u FROM UrpPassword u")
 public class UrpPassword implements Serializable {
 	private static final long serialVersionUID = 1L;
 

@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import com.jesusmoh.dto.ValidateResultDTO;
@@ -18,8 +20,8 @@ import com.jesusmoh.persistence.projections.IUrpWeakUser;
 import com.jesusmoh.persistence.repository.UrpUsersCrudRepository;
 import com.jesusmoh.services.domain.IUrpUserService;
 import com.jesusmoh.services.mappers.UrpUserMapper;
-import com.jesusmoh.services.mappers.UrpUserMapper;
 import com.jesusmoh.services.validators.IUrpUserValidatorService;
+import org.springframework.cache.annotation.Cacheable;
 
 @Service
 public class UrpUserServiceImpl implements IUrpUserService {

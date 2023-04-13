@@ -1,9 +1,9 @@
 package com.jesusmoh.persistence.entities;
 
-
 import java.io.Serializable;
-import jakarta.persistence.*;
 import java.util.Set;
+
+import jakarta.persistence.*;
 
 
 /**
@@ -12,7 +12,6 @@ import java.util.Set;
  */
 @Entity
 @Table(name="urp_roles")
-@NamedQuery(name="UrpRole.findAll", query="SELECT u FROM UrpRole u")
 public class UrpRole implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -27,14 +26,10 @@ public class UrpRole implements Serializable {
 	private String group1dc;
 
 	private String name;
-
+	
 	//bi-directional many-to-one association to UrpPrivilege
-	@OneToMany(mappedBy="urpRole")
+	@OneToMany(mappedBy="urpRole",fetch = FetchType.EAGER)
 	private Set<UrpPrivilege> urpPrivileges;
-
-	//bi-directional many-to-many association to UrpUser
-	@ManyToMany(mappedBy="urpRoles")
-	private Set<UrpUser> urpUsers;
 
 	public UrpRole() {
 	}
@@ -79,34 +74,15 @@ public class UrpRole implements Serializable {
 		this.name = name;
 	}
 
+	
 	public Set<UrpPrivilege> getUrpPrivileges() {
-		return this.urpPrivileges;
+		return urpPrivileges;
 	}
 
 	public void setUrpPrivileges(Set<UrpPrivilege> urpPrivileges) {
 		this.urpPrivileges = urpPrivileges;
 	}
 
-	public UrpPrivilege addUrpPrivilege(UrpPrivilege urpPrivilege) {
-		getUrpPrivileges().add(urpPrivilege);
-		urpPrivilege.setUrpRole(this);
 
-		return urpPrivilege;
-	}
-
-	public UrpPrivilege removeUrpPrivilege(UrpPrivilege urpPrivilege) {
-		getUrpPrivileges().remove(urpPrivilege);
-		urpPrivilege.setUrpRole(null);
-
-		return urpPrivilege;
-	}
-
-	public Set<UrpUser> getUrpUsers() {
-		return this.urpUsers;
-	}
-
-	public void setUrpUsers(Set<UrpUser> urpUsers) {
-		this.urpUsers = urpUsers;
-	}
 
 }

@@ -10,7 +10,6 @@ import java.util.Set;
  */
 @Entity
 @Table(name="urp_groups")
-@NamedQuery(name="UrpGroup.findAll", query="SELECT u FROM UrpGroup u")
 public class UrpGroup implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -43,26 +42,26 @@ public class UrpGroup implements Serializable {
 		this.name = name;
 	}
 
-	public Set<UrpUser> getUrpUsers() {
-		return this.urpUsers;
-	}
+//	public Set<UrpUser> getUrpUsers() {
+//		return this.urpUsers;
+//	}
 
 	public void setUrpUsers(Set<UrpUser> urpUsers) {
 		this.urpUsers = urpUsers;
 	}
 
-	public UrpUser addUrpUser(UrpUser urpUser) {
-		getUrpUsers().add(urpUser);
-		urpUser.setUrpGroup(this);
-
-		return urpUser;
-	}
-
-	public UrpUser removeUrpUser(UrpUser urpUser) {
-		getUrpUsers().remove(urpUser);
-		urpUser.setUrpGroup(null);
-
-		return urpUser;
-	}
+//	public UrpUser addUrpUser(UrpUser urpUser) {
+//		getUrpUsers().add(urpUser);
+//		urpUser.setUrpGroup(this);
+//
+//		return urpUser;
+//	}
+//
+//	public UrpUser removeUrpUser(UrpUser urpUser) {
+//		getUrpUsers().remove(urpUser);
+//		urpUser.setUrpGroup(null);
+//
+//		return urpUser;
+//	}
 
 }

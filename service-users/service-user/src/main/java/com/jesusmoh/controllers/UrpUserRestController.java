@@ -7,19 +7,17 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.jesusmoh.dto.ValidateResultDTO;
 import com.jesusmoh.dto.request.UrpUserRequestDTO;
 import com.jesusmoh.dto.response.UrpResponseDTO;
 import com.jesusmoh.dto.response.UrpUserResponseDTO;
 import com.jesusmoh.services.domain.IUrpUserService;
-import com.jesusmoh.services.validators.IUrpUserValidatorService;
+
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -56,7 +54,8 @@ public class UrpUserRestController {
 
 	@GetMapping("/")
 	public UrpResponseDTO getAll() {
-		UrpResponseDTO r = new UrpResponseDTO(urpUserService.findAll(), null, HttpStatus.OK);
+		List<UrpUserResponseDTO> l=urpUserService.findAll();
+		UrpResponseDTO r = new UrpResponseDTO(l, null, HttpStatus.OK);
 		return r;
 	}
 

@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import java.math.BigInteger;
 import java.util.Set;
 
-
 /**
  * The persistent class for the urp_users database table.
  * 
@@ -39,12 +38,8 @@ public class UrpUser implements Serializable {
 	@Column(name="user_name")
 	private String userName;
 
-	//bi-directional many-to-one association to UrpUserBusinessunit
-	@OneToMany(mappedBy="urpUser")
-	private Set<UrpUserBusinessunit> urpUserBusinessunits;
-
 	//bi-directional many-to-many association to UrpRole
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
 		name="urp_user_roles"
 		, joinColumns={
@@ -57,7 +52,7 @@ public class UrpUser implements Serializable {
 	private Set<UrpRole> urpRoles;
 
 	//bi-directional many-to-one association to UrpGroup
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="group_id")
 	private UrpGroup urpGroup;
 
@@ -136,27 +131,6 @@ public class UrpUser implements Serializable {
 		this.userName = userName;
 	}
 
-	public Set<UrpUserBusinessunit> getUrpUserBusinessunits() {
-		return this.urpUserBusinessunits;
-	}
-
-	public void setUrpUserBusinessunits(Set<UrpUserBusinessunit> urpUserBusinessunits) {
-		this.urpUserBusinessunits = urpUserBusinessunits;
-	}
-
-	public UrpUserBusinessunit addUrpUserBusinessunit(UrpUserBusinessunit urpUserBusinessunit) {
-		getUrpUserBusinessunits().add(urpUserBusinessunit);
-		urpUserBusinessunit.setUrpUser(this);
-
-		return urpUserBusinessunit;
-	}
-
-	public UrpUserBusinessunit removeUrpUserBusinessunit(UrpUserBusinessunit urpUserBusinessunit) {
-		getUrpUserBusinessunits().remove(urpUserBusinessunit);
-		urpUserBusinessunit.setUrpUser(null);
-
-		return urpUserBusinessunit;
-	}
 
 	public Set<UrpRole> getUrpRoles() {
 		return this.urpRoles;

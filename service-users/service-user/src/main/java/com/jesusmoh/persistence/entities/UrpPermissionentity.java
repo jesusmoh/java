@@ -11,7 +11,6 @@ import java.util.Set;
  */
 @Entity
 @Table(name="urp_permissionentities")
-@NamedQuery(name="UrpPermissionentity.findAll", query="SELECT u FROM UrpPermissionentity u")
 public class UrpPermissionentity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -54,23 +53,23 @@ public class UrpPermissionentity implements Serializable {
 		this.name = name;
 	}
 
-	public Set<UrpPrivilege> getUrpPrivileges() {
-		return this.urpPrivileges;
-	}
-
+//	public Set<UrpPrivilege> getUrpPrivileges() {
+//		return this.urpPrivileges;
+//	}
+//
 	public void setUrpPrivileges(Set<UrpPrivilege> urpPrivileges) {
 		this.urpPrivileges = urpPrivileges;
 	}
 
 	public UrpPrivilege addUrpPrivilege(UrpPrivilege urpPrivilege) {
-		getUrpPrivileges().add(urpPrivilege);
+		this.urpPrivileges.add(urpPrivilege);
 		urpPrivilege.setUrpPermissionentity(this);
 
 		return urpPrivilege;
 	}
 
 	public UrpPrivilege removeUrpPrivilege(UrpPrivilege urpPrivilege) {
-		getUrpPrivileges().remove(urpPrivilege);
+		this.urpPrivileges.remove(urpPrivilege);
 		urpPrivilege.setUrpPermissionentity(null);
 
 		return urpPrivilege;

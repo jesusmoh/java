@@ -11,7 +11,6 @@ import jakarta.persistence.*;
  */
 @Entity
 @Table(name="urp_privileges")
-@NamedQuery(name="UrpPrivilege.findAll", query="SELECT u FROM UrpPrivilege u")
 public class UrpPrivilege implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -22,12 +21,12 @@ public class UrpPrivilege implements Serializable {
 	private String permission;
 
 	//bi-directional many-to-one association to UrpPermissionentity
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="permission_entity_id")
 	private UrpPermissionentity urpPermissionentity;
 
 	//bi-directional many-to-one association to UrpRole
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="role_id")
 	private UrpRole urpRole;
 
@@ -58,12 +57,6 @@ public class UrpPrivilege implements Serializable {
 		this.urpPermissionentity = urpPermissionentity;
 	}
 
-	public UrpRole getUrpRole() {
-		return this.urpRole;
-	}
 
-	public void setUrpRole(UrpRole urpRole) {
-		this.urpRole = urpRole;
-	}
 
 }
