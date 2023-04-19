@@ -38,9 +38,9 @@ public class UrpUserRestController {
 		return r;
 	}
 	
-	@PutMapping(value = "/")
-	public UrpUserResponseDTO update(@RequestBody UrpUserRequestDTO dto) {
-		UrpUserResponseDTO r = urpUserService.update(dto);
+	@PutMapping(value = "/{username}")
+	public UrpUserResponseDTO update(@RequestBody UrpUserRequestDTO dto,@PathVariable String username) {
+		UrpUserResponseDTO r = urpUserService.update(dto,username);
 		return r;
 
 	}

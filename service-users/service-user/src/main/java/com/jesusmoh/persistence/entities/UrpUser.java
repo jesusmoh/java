@@ -2,6 +2,8 @@ package com.jesusmoh.persistence.entities;
 
 import java.io.Serializable;
 import jakarta.persistence.*;
+import lombok.ToString;
+
 import java.math.BigInteger;
 import java.util.Set;
 
@@ -11,6 +13,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name="urp_users")
+@ToString
 public class UrpUser implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -25,6 +28,7 @@ public class UrpUser implements Serializable {
 
 	private byte eliminated;
 
+	@Column(name="email",unique = true)
 	private String email;
 
 	@Column(name="first_name")
@@ -35,7 +39,7 @@ public class UrpUser implements Serializable {
 
 	private String password;
 
-	@Column(name="user_name")
+	@Column(name="user_name",unique = true)
 	private String userName;
 
 	//bi-directional many-to-many association to UrpRole

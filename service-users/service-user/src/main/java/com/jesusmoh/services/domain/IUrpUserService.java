@@ -18,7 +18,7 @@ public interface IUrpUserService {
 	
 	UrpUserResponseDTO delete(String username);
 	
-	UrpUserResponseDTO update(UrpUserRequestDTO u);
+	UrpUserResponseDTO update(UrpUserRequestDTO u,String username);
 	
 	
 

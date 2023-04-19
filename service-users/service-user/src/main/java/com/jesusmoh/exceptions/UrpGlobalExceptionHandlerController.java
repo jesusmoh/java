@@ -17,9 +17,9 @@ import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Value;
 
 @RestControllerAdvice
-public class GlobalExceptionHandlerController {
+public class UrpGlobalExceptionHandlerController {
 
-	static final Logger log = Logger.getLogger(GlobalExceptionHandlerController.class.getName());
+	static final Logger log = Logger.getLogger(UrpGlobalExceptionHandlerController.class.getName());
 
 	@ExceptionHandler(UrpException.class)
 	public void handleCustomUrpException(HttpServletResponse res, UrpException ex) throws IOException {

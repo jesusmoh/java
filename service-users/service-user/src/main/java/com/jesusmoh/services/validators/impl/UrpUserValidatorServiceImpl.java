@@ -31,12 +31,6 @@ public class UrpUserValidatorServiceImpl implements IUrpUserValidatorService {
     @Value("${validator.last.name.messages}")
     private String validatorLastNameMessages;
 
-    @Value("${validator.api.email.regex}")
-    private String validatorApiEmailRegex;
-
-    @Value("${validator.api.email.messages}")
-    private String validatorApiEmailMessages;
-
 
 	public ValidateResultDTO isUserNameValid(String userName) {
 		ValidateResultDTO r = new ValidateResultDTO();
@@ -45,16 +39,38 @@ public class UrpUserValidatorServiceImpl implements IUrpUserValidatorService {
 		return r;
 	}
 
+	public ValidateResultDTO isFirstNameValid(String firstName) {
+		ValidateResultDTO r = new ValidateResultDTO();
+		r.setValid(firstName.matches(validatorFirstNameRegex));
+		r.setResult((r.isValid() == false) ? validatorUserNameMessages.concat(" >> ".concat(firstName)) :"");
+		return r;
+	}
+	
+	public ValidateResultDTO isLastNameValid(String lastName) {
+		ValidateResultDTO r = new ValidateResultDTO();
+		r.setValid(lastName.matches(validatorLastNameRegex));
+		r.setResult((r.isValid() == false) ? validatorUserNameMessages.concat(" >> ".concat(lastName)) :"");
+		return r;
+	}
+
 
 	@Override
 	public ValidateResultDTO isUrpUserValid(UrpUserRequestDTO dto) {
 		ValidateResultDTO r = new ValidateResultDTO();
 		
-		if(dto!=null) {
-			r =isUserNameValid(dto.getUserName());
-			if(r.isValid()==false)
-				return r;
-			
+		if (dto != null) {
+		    r = isUserNameValid(dto.getUserName());
+		    if(!r.isValid())
+			return r;
+		    
+		    r = isFirstNameValid(dto.getFirstName());
+		    if(!r.isValid())
+			return r;
+		    
+		    r = isLastNameValid(dto.getLastName());
+		    if(!r.isValid())
+			return r;
+
 		}
 		
 		return r;

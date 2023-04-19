@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml" />
+    <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>host.docker.internal:5000</destination>
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <mdc />
+                <context />
+                <logLevel />
+                <loggerName />
+                <pattern>
+                    <pattern>{"app": "microservice-urp-service-user","UrpContainer": "${HOSTNAME}"}</pattern>
+                </pattern>
+                <threadName />
+                <message />
+                <logstashMarkers />
+                <stackTrace />
+            </providers>
+        </encoder>
+    </appender>
+    <appender name="LOGSTASH-ERRORS" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <destination>host.docker.internal:5000</destination>
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <mdc />
+                <context />
+                <version />
+                <logLevel />
+                <loggerName />
+                <threadName />
+                <message />
+                <logstashMarkers />
+                <arguments />
+                <stackTrace />
+                <pattern>
+                    <pattern>{"app": "microservice-urp-service-user","UrpContainer": "${HOSTNAME}","appender": "errors"}</pattern>
+                </pattern>
+            </providers>
+        </encoder>
+    </appender>
+    <root level="info">
+        <appender-ref ref="LOGSTASH" />
+        <appender-ref ref="LOGSTASH-ERRORS" />
+    </root>
+</configuration>
