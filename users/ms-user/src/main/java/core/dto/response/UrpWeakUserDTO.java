@@ -1,4 +1,4 @@
-package com.jesusmoh.dto.response;
+package core.dto.response;
 
 import java.util.Date;
 

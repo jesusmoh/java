@@ -1,4 +1,4 @@
-package com.jesusmoh.controllers;
+package core.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.jesusmoh.dto.request.UrpUserRequestDTO;
-import com.jesusmoh.dto.response.UrpResponseDTO;
-import com.jesusmoh.dto.response.UrpUserResponseDTO;
-import com.jesusmoh.services.domain.IUrpUserService;
 
+import core.dto.request.UrpUserRequestDTO;
+import core.dto.response.UrpResponseDTO;
+import core.dto.response.UrpUserResponseDTO;
+import core.services.domain.IUrpUserService;
 
 import java.util.List;
 

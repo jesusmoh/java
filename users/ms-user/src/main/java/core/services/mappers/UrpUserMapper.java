@@ -1,4 +1,4 @@
-package com.jesusmoh.services.mappers;
+package core.services.mappers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,11 +7,11 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.stereotype.Service;
 
-import com.jesusmoh.dto.request.UrpUserRequestDTO;
-import com.jesusmoh.dto.response.UrpUserResponseDTO;
-import com.jesusmoh.dto.response.UrpWeakUserDTO;
-import com.jesusmoh.persistence.entities.UrpUser;
-import com.jesusmoh.persistence.projections.IUrpWeakUser;
+import core.dto.request.UrpUserRequestDTO;
+import core.dto.response.UrpUserResponseDTO;
+import core.dto.response.UrpWeakUserDTO;
+import core.persistence.entities.UrpUser;
+import core.persistence.projections.IUrpWeakUser;
 
 @Service
 public class UrpUserMapper {

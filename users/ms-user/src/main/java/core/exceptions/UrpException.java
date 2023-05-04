@@ -1,4 +1,4 @@
-package com.jesusmoh.exceptions;
+package core.exceptions;
 
 public class UrpException extends RuntimeException {
 

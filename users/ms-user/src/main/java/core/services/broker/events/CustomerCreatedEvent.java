@@ -1,6 +1,6 @@
-package com.jesusmoh.services.broker.events;
+package core.services.broker.events;
 
-import com.jesusmoh.dto.request.UrpUserRequestDTO;
+import core.dto.request.UrpUserRequestDTO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

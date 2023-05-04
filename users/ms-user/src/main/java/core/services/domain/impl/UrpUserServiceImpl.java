@@ -1,4 +1,4 @@
-package com.jesusmoh.services.domain.impl;
+package core.services.domain.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,21 +6,23 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+
+import core.commons.UrpConstants;
+import core.dto.ValidateResultDTO;
+import core.dto.request.UrpUserRequestDTO;
+import core.dto.response.UrpUserResponseDTO;
+import core.dto.response.UrpWeakUserDTO;
+import core.exceptions.UrpException;
+import core.persistence.entities.UrpUser;
+import core.persistence.projections.IUrpWeakUser;
+import core.persistence.repository.UrpUsersCrudRepository;
+import core.services.broker.UrpEventsService;
+import core.services.domain.IUrpUserService;
+import core.services.mappers.UrpUserMapper;
+import core.services.validators.IUrpUserValidatorService;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import com.jesusmoh.commons.UrpConstants;
-import com.jesusmoh.dto.ValidateResultDTO;
-import com.jesusmoh.dto.request.UrpUserRequestDTO;
-import com.jesusmoh.dto.response.UrpUserResponseDTO;
-import com.jesusmoh.dto.response.UrpWeakUserDTO;
-import com.jesusmoh.exceptions.UrpException;
-import com.jesusmoh.persistence.entities.UrpUser;
-import com.jesusmoh.persistence.projections.IUrpWeakUser;
-import com.jesusmoh.persistence.repository.UrpUsersCrudRepository;
-import com.jesusmoh.services.broker.UrpEventsService;
-import com.jesusmoh.services.domain.IUrpUserService;
-import com.jesusmoh.services.mappers.UrpUserMapper;
-import com.jesusmoh.services.validators.IUrpUserValidatorService;
 
 @Service
 public class UrpUserServiceImpl implements IUrpUserService {

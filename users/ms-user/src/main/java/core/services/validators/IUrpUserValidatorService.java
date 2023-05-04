@@ -1,7 +1,7 @@
-package com.jesusmoh.services.validators;
+package core.services.validators;
 
-import com.jesusmoh.dto.ValidateResultDTO;
-import com.jesusmoh.dto.request.UrpUserRequestDTO;
+import core.dto.ValidateResultDTO;
+import core.dto.request.UrpUserRequestDTO;
 
 public interface IUrpUserValidatorService {
 

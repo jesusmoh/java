@@ -1,10 +1,10 @@
-package com.jesusmoh.services.domain;
+package core.services.domain;
 
 import java.util.List;
 
-import com.jesusmoh.dto.request.UrpUserRequestDTO;
-import com.jesusmoh.dto.response.UrpUserResponseDTO;
-import com.jesusmoh.dto.response.UrpWeakUserDTO;
+import core.dto.request.UrpUserRequestDTO;
+import core.dto.response.UrpUserResponseDTO;
+import core.dto.response.UrpWeakUserDTO;
 
 public interface IUrpUserService {
 	

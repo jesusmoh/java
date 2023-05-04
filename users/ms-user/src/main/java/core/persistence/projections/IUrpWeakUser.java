@@ -1,4 +1,4 @@
-package com.jesusmoh.persistence.projections;
+package core.persistence.projections;
 
 import java.util.Date;
 

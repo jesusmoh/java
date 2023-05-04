@@ -1,4 +1,4 @@
-package com.jesusmoh.dto.request;
+package core.dto.request;
 
 import lombok.Data;
 

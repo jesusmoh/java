@@ -1,4 +1,4 @@
-package com.jesusmoh.services.broker;
+package core.services.broker;
 
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-import com.jesusmoh.dto.request.UrpUserRequestDTO;
-import com.jesusmoh.services.broker.events.*;
+import core.dto.request.UrpUserRequestDTO;
+import core.services.broker.events.*;
 
 @Service
 public class UrpEventsService {

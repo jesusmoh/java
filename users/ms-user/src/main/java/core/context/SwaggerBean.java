@@ -1,4 +1,4 @@
-package com.jesusmoh.context;
+package core.context;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

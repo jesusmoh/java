@@ -1,4 +1,4 @@
-package com.jesusmoh.persistence.entities;
+package core.persistence.entities;
 
 import java.io.Serializable;
 import java.util.Set;

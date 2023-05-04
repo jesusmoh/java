@@ -1,10 +1,11 @@
-package com.jesusmoh.dto.response;
+package core.dto.response;
 
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.jesusmoh.persistence.entities.UrpGroup;
-import com.jesusmoh.persistence.entities.UrpRole;
+
+import core.persistence.entities.UrpGroup;
+import core.persistence.entities.UrpRole;
 import lombok.Data;
 
 @Data

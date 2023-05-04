@@ -1,4 +1,4 @@
-package com.jesusmoh.dto;
+package core.dto;
 
 public class UrpRequest {
 

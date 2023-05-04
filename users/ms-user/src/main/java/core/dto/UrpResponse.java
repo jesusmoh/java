@@ -1,4 +1,4 @@
-package com.jesusmoh.dto;
+package core.dto;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

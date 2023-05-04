@@ -1,10 +1,9 @@
-package com.jesusmoh.persistence.repository;
+package core.persistence.repository;
 
 import org.springframework.stereotype.Repository;
 
-import com.jesusmoh.persistence.entities.UrpUser;
-import com.jesusmoh.persistence.projections.IUrpWeakUser;
-
+import core.persistence.entities.UrpUser;
+import core.persistence.projections.IUrpWeakUser;
 
 import org.springframework.data.jpa.repository.*;
 

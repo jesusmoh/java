@@ -1,4 +1,4 @@
-package com.jesusmoh.exceptions;
+package core.exceptions;
 
 import java.io.IOException;
 import java.util.logging.Level;

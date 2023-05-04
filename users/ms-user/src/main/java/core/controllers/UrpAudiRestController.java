@@ -1,4 +1,4 @@
-package com.jesusmoh.controllers;
+package core.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jesusmoh.dto.response.UrpWeakUserDTO;
-import com.jesusmoh.services.domain.IUrpUserService;
+import core.dto.response.UrpWeakUserDTO;
+import core.services.domain.IUrpUserService;
 
 @RestController
 @RequestMapping("/audit")

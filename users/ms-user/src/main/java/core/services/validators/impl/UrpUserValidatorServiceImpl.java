@@ -1,12 +1,11 @@
-package com.jesusmoh.services.validators.impl;
+package core.services.validators.impl;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.jesusmoh.dto.ValidateResultDTO;
-import com.jesusmoh.dto.request.UrpUserRequestDTO;
-import com.jesusmoh.services.validators.IUrpUserValidatorService;
-
+import core.dto.ValidateResultDTO;
+import core.dto.request.UrpUserRequestDTO;
+import core.services.validators.IUrpUserValidatorService;
 import lombok.Data;
 
 @Service

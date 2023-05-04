@@ -9,21 +9,23 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/x
         <relativePath />
 <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.jesusmoh.users</groupId>
+    <groupId>com.jesusmoh.ms.user</groupId>
     <artifactId>ms-user</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>ms-user</name>
-    <description>Microservice USER</description>
+    <description>Microservices USER</description>
     <properties>
         <java.version>17</java.version>
         <repackage.classifier />
     </properties>
     <dependencies>
         <dependency>
+<!-- Web -->
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
+<!-- Test -->
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <scope>runtime</scope>
@@ -75,9 +77,9 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/x
             <groupId>net.logstash.logback</groupId>
             <artifactId>logstash-logback-encoder</artifactId>
             <version>7.2</version>
-        </dependency>
-<!-- Broker Kafka -->       
+        </dependency>      
         <dependency>
+<!-- Broker Kafka --> 
 			<groupId>org.springframework.kafka</groupId>
 			<artifactId>spring-kafka</artifactId>
 		</dependency>
