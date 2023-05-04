@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>urp.system.platform</groupId>
+        <artifactId>urp-system-backend</artifactId>
+        <version>super-pom-0.1</version>
+    </parent>
+    <groupId>urp.system.platform.notifications</groupId>
+    <artifactId>urp-ms-notifications</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>urp-ms-notifications</name>
+
+    <properties>
+        <java.version>17</java.version>
+    </properties>
+    <dependencies>
+
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
