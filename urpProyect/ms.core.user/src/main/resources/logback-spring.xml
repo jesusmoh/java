@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
     <include resource="org/springframework/boot/logging/logback/base.xml" />
+     <property resource="application.properties" />
+     <springProperty scope="context" name="logstash.ip" source="logstash.ip"/>
     <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
-<!--         <destination>10.105.239.222:5044</destination> -->
-         <destination>localhost:5044</destination>
+         <destination>${logstash.ip}</destination>
         <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
             <providers>
                 <mdc />
@@ -25,7 +26,7 @@
             <level>ERROR</level>
         </filter>
 <!--         <destination>10.105.239.222:5044</destination> -->
-         <destination>localhost:5044</destination>
+         <destination>${logstash.ip}</destination>
         <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
             <providers>
                 <mdc />
