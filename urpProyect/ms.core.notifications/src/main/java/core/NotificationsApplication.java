@@ -2,12 +2,14 @@ package core;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 
 @SpringBootApplication
-public class BooksMsApiApplication {
+@RefreshScope
+public class NotificationsApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BooksMsApiApplication.class, args);
+		SpringApplication.run(NotificationsApplication.class, args);
 	}
 
 }

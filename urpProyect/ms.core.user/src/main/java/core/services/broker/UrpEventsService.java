@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-import core.dto.request.UrpUserRequestDTO;
+import core.dto.broker.UrpUserDTO;
 import core.services.broker.events.*;
 
 @Service
@@ -18,7 +18,7 @@ public class UrpEventsService {
 	@Value("${topic.customer.name:NewUrpUsers}")
 	private String topicNewUrpUsers;
 	
-	public void publish(UrpUserRequestDTO dto) {
+	public void publish(UrpUserDTO dto) {
 
 		CustomerCreatedEvent created = new CustomerCreatedEvent();
 		created.setData(dto);

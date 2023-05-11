@@ -1,7 +1,6 @@
 package core.services.broker.events;
 
-
-import core.dto.broker.UrpUserDTO;
+import core.entity.UrpUserDTO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

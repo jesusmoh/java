@@ -8,10 +8,11 @@ USER uu
 
 VOLUME /workspace
 
-# Set the maximum heap size for the JVM
-ENV JAVA_OPTS="-Xmx256m"
+ENV TZ=America/Miami
 
-ARG JAR_FILE=target/service-user-0.0.1-SNAPSHOT.jar
+ENV JAVA_OPTS="-Xms256m -Xmx256m -XX:+UseG1GC -XX:+UseStringDeduplication"
+
+ARG JAR_FILE=target/urp-ms-user-0.0.1-SNAPSHOT.jar
 
 ADD ${JAR_FILE} app.jar
 

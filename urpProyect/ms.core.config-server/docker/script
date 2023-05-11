@@ -1,0 +1,1 @@
+docker build -f docker/Dockerfile.staged -t img/ms-core-config-server-0-0-1 .

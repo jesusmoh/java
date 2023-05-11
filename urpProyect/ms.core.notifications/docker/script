@@ -1,0 +1,1 @@
+docker build -f docker/Dockerfile.simple -t img/ms-core-notifications-0-0-1 .

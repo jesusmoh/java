@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml" />
+     <property resource="application.properties" />
+     <springProperty scope="context" name="logstash.ip" source="logstash.ip"/>
+    <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+         <destination>${logstash.ip}</destination>
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <mdc />
+                <context />
+                <logLevel />
+                <loggerName />
+                <pattern>
+                    <pattern>{"app": "ms.core.notifications","UrpContainer": "${HOSTNAME}"}</pattern>
+                </pattern>
+                <threadName />
+                <message />
+                <logstashMarkers />
+                <stackTrace />
+            </providers>
+        </encoder>
+    </appender>
+    <appender name="LOGSTASH-ERRORS" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+         <destination>${logstash.ip}</destination>
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <mdc />
+                <context />
+                <version />
+                <logLevel />
+                <loggerName />
+                <threadName />
+                <message />
+                <logstashMarkers />
+                <arguments />
+                <stackTrace />
+                <pattern>
+                    <pattern>{"app": "ms.core.notifications","UrpContainer": "${HOSTNAME}","appender": "errors"}</pattern>
+                </pattern>
+            </providers>
+        </encoder>
+    </appender>
+    <root level="info">
+        <appender-ref ref="LOGSTASH" />
+        <appender-ref ref="LOGSTASH-ERRORS" />
+    </root>
+</configuration>

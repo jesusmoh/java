@@ -1,0 +1,33 @@
+# syntax=docker/dockerfile:experimental
+FROM eclipse-temurin:17-jdk as build
+WORKDIR /workspace/app
+
+COPY mvnw .
+COPY .mvn .mvn
+COPY pom.xml .
+
+COPY ms.core.user/pom.xml ./ms.core.user
+RUN mvn -pl ms.core.user verify --fail-never
+ADD core $HOME/core
+
+COPY src src
+
+RUN --mount=type=cache,target=/root/.m2 ./mvnw install -DskipTests
+RUN mkdir -p target/extracted &&  java -Djarmode=layertools -jar target/*.jar extract --destination target/extracted
+
+FROM openjdk:17-alpine
+
+RUN apk add --no-cache tzdata
+ENV TZ=America/Miami
+
+RUN adduser -D uu
+USER uu
+VOLUME /tmp
+
+ENV JAVA_OPTS="-Xms256m -Xmx256m -XX:+UseG1GC -XX:+UseStringDeduplication"
+ARG EXTRACTED=/workspace/app/target/extracted
+COPY --from=build ${EXTRACTED}/dependencies/ ./
+COPY --from=build ${EXTRACTED}/spring-boot-loader/ ./
+COPY --from=build ${EXTRACTED}/snapshot-dependencies/ ./
+COPY --from=build ${EXTRACTED}/application/ ./
+ENTRYPOINT ["java","org.springframework.boot.loader.JarLauncher"]

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import core.commons.UrpConstants;
 import core.dto.ValidateResultDTO;
+import core.dto.broker.UrpUserDTO;
 import core.dto.request.UrpUserRequestDTO;
 import core.dto.response.UrpUserResponseDTO;
 import core.dto.response.UrpWeakUserDTO;
@@ -85,9 +86,17 @@ public class UrpUserServiceImpl implements IUrpUserService {
 	    if (v.isValid()) {
 		UrpUserResponseDTO r;
 		UrpUser t = userRepository.save(urpUserMapper.userMapper(u));
-		urpEventsService.publish(u);
+		
 		r = urpUserMapper.userDTOMapper(t);
 		log.log(Level.INFO, r.toString());
+
+		UrpUserDTO f = new UrpUserDTO();
+		f.setEmail(r.getEmail());
+		f.setLastName(r.getLastName());
+		f.setFirstName(r.getFirstName());
+
+		urpEventsService.publish(f);
+
 		return r;
 	    } else {
 		throw new UrpException(v.getResult(), true);
