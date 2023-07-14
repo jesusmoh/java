@@ -95,7 +95,7 @@ public class UrpUserServiceImpl implements IUrpUserService {
 		f.setLastName(r.getLastName());
 		f.setFirstName(r.getFirstName());
 
-		urpEventsService.publish(f);
+		urpEventsService.publishCreate(f);
 
 		return r;
 	    } else {

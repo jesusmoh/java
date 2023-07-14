@@ -12,7 +12,7 @@
                 <logLevel />
                 <loggerName />
                 <pattern>
-                    <pattern>{"app": "microservice-urp-service-user","UrpContainer": "${HOSTNAME}"}</pattern>
+                    <pattern>{"app": "ms.core.user","UrpContainer": "${HOSTNAME}"}</pattern>
                 </pattern>
                 <threadName />
                 <message />
@@ -40,7 +40,7 @@
                 <arguments />
                 <stackTrace />
                 <pattern>
-                    <pattern>{"app": "microservice-urp-service-user-error","UrpContainer": "${HOSTNAME}","appender": "errors"}</pattern>
+                    <pattern>{"app": "ms.core.user-error","UrpContainer": "${HOSTNAME}","appender": "errors"}</pattern>
                 </pattern>
             </providers>
         </encoder>

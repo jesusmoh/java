@@ -16,7 +16,7 @@ CustomerEventsService {
 	static final Logger log = Logger.getLogger(CustomerEventsService.class.getName());
 
 	@KafkaListener(
-			topics = "${topic.customer.name:NewUrpUsers}",
+			topics = "${topic.customer.name:newUsersTopicV2}",
 			containerFactory = "kafkaListenerContainerFactory",
 	groupId = "grupo1")
 	public void consumer(Event<?> event) {

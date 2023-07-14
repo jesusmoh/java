@@ -1,6 +1,8 @@
 package core.services.broker;
 
 import java.util.UUID;
+
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -15,17 +17,15 @@ public class UrpEventsService {
 	@Autowired
 	private KafkaTemplate<String, Event<?>> producer;
 	
-	@Value("${topic.customer.name:NewUrpUsers}")
+	@Value("${topic.customer.name:newUsersTopicV2}")
 	private String topicNewUrpUsers;
 	
-	public void publish(UrpUserDTO dto) {
+	public void publishCreate(UrpUserDTO dto) {
 
 		CustomerCreatedEvent created = new CustomerCreatedEvent();
 		created.setData(dto);
 		created.setId(UUID.randomUUID().toString());
 		created.setType(EventType.CREATED);
-
-
 		this.producer.send(topicNewUrpUsers, created);
 	}
 }
