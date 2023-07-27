@@ -53,10 +53,6 @@ public class UrpPermissionentity implements Serializable {
 		this.name = name;
 	}
 
-//	public Set<UrpPrivilege> getUrpPrivileges() {
-//		return this.urpPrivileges;
-//	}
-//
 	public void setUrpPrivileges(Set<UrpPrivilege> urpPrivileges) {
 		this.urpPrivileges = urpPrivileges;
 	}

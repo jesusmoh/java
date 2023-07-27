@@ -34,29 +34,25 @@ public class UrpUserRestController {
     //CRUD USER
 	@GetMapping(value = "/{username}")
 	public UrpResponseDTO getUrpUserByUserName(@PathVariable String username) {
-		UrpResponseDTO r = new UrpResponseDTO(urpUserService.getUrpUserByUserName(username), null, HttpStatus.OK);
-		return r;
+		return new UrpResponseDTO(urpUserService.getUrpUserByUserName(username), null, HttpStatus.OK);
 	}
 	
 	@PutMapping(value = "/{username}")
 	public UrpUserResponseDTO update(@RequestBody UrpUserRequestDTO dto,@PathVariable String username) {
-		UrpUserResponseDTO r = urpUserService.update(dto,username);
-		return r;
+		return urpUserService.update(dto,username);
 
 	}
 	
 	@PostMapping(value = "/")
 	public UrpUserResponseDTO create(@RequestBody UrpUserRequestDTO dto) {
-		UrpUserResponseDTO r = urpUserService.save(dto);
-		return r;
+		return urpUserService.save(dto);
 
 	}
 
 	@GetMapping("/")
 	public UrpResponseDTO getAll() {
 		List<UrpUserResponseDTO> l=urpUserService.findAll();
-		UrpResponseDTO r = new UrpResponseDTO(l, null, HttpStatus.OK);
-		return r;
+		return new UrpResponseDTO(l, null, HttpStatus.OK);
 	}
 
 }

@@ -20,8 +20,7 @@ public class UrpUserMapper {
 
 	public UrpUserResponseDTO userDTOMapper(UrpUser u) {
 		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STANDARD);
-		UrpUserResponseDTO dto = modelMapper.map(u, UrpUserResponseDTO.class);
-		return dto;
+		return modelMapper.map(u, UrpUserResponseDTO.class);
 	}
 	
 	public List<UrpUserResponseDTO> userDTOMapper(List<UrpUser> l){		
@@ -32,22 +31,19 @@ public class UrpUserMapper {
 
 	public UrpWeakUserDTO weakUsersDTO(IUrpWeakUser u) {
 		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STANDARD);
-		UrpWeakUserDTO r = modelMapper.map(u, UrpWeakUserDTO.class);
-		return r;
+		return modelMapper.map(u, UrpWeakUserDTO.class);
 	}
 	
 	public UrpUser userMapper(UrpUserRequestDTO u) {
 		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STANDARD);
-		UrpUser r 	= modelMapper.map(u, UrpUser.class);
-		return r;
+		return modelMapper.map(u, UrpUser.class);
 
 	}
 	
 	public UrpUser userMapper(UrpUser u) {
 		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STANDARD);
-		UrpUser r 	= modelMapper.map(u, UrpUser.class);
-		return r;
-
+		return  modelMapper.map(u, UrpUser.class);
+		
 	}
 
 }

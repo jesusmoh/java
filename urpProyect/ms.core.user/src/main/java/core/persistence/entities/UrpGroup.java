@@ -42,26 +42,8 @@ public class UrpGroup implements Serializable {
 		this.name = name;
 	}
 
-//	public Set<UrpUser> getUrpUsers() {
-//		return this.urpUsers;
-//	}
-
 	public void setUrpUsers(Set<UrpUser> urpUsers) {
 		this.urpUsers = urpUsers;
 	}
-
-//	public UrpUser addUrpUser(UrpUser urpUser) {
-//		getUrpUsers().add(urpUser);
-//		urpUser.setUrpGroup(this);
-//
-//		return urpUser;
-//	}
-//
-//	public UrpUser removeUrpUser(UrpUser urpUser) {
-//		getUrpUsers().remove(urpUser);
-//		urpUser.setUrpGroup(null);
-//
-//		return urpUser;
-//	}
 
 }
