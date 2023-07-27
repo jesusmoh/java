@@ -6,12 +6,9 @@ import java.util.List;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.stereotype.Service;
-
 import core.dto.request.UrpUserRequestDTO;
 import core.dto.response.UrpUserResponseDTO;
-import core.dto.response.UrpWeakUserDTO;
 import core.persistence.entities.UrpUser;
-import core.persistence.projections.IUrpWeakUser;
 
 @Service
 public class UrpUserMapper {
@@ -29,11 +26,6 @@ public class UrpUserMapper {
 		return r;
 	}
 
-	public UrpWeakUserDTO weakUsersDTO(IUrpWeakUser u) {
-		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STANDARD);
-		return modelMapper.map(u, UrpWeakUserDTO.class);
-	}
-	
 	public UrpUser userMapper(UrpUserRequestDTO u) {
 		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STANDARD);
 		return modelMapper.map(u, UrpUser.class);

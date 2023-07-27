@@ -46,18 +46,8 @@ public class UrpUserServiceImpl implements IUrpUserService {
 	@Override
 	public UrpUserResponseDTO getUrpUserByUserName(String userName) {
 
-		UrpUserResponseDTO r = new UrpUserResponseDTO();
 		UrpUser t = userRepository.findByUserName(userName);
-		r = urpUserMapper.userDTOMapper(t);
-		log.log(Level.INFO, r.toString());
-		return r;
-
-	}
-
-	@Override
-	public UrpWeakUserDTO weakUserDTO() {
-		IUrpWeakUser i = userRepository.findWeakUser();
-		UrpWeakUserDTO r = urpUserMapper.weakUsersDTO(i);
+		UrpUserResponseDTO r = urpUserMapper.userDTOMapper(t);
 		log.log(Level.INFO, r.toString());
 		return r;
 
