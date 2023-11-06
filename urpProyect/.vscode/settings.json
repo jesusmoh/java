@@ -3,5 +3,6 @@
     "java.compile.nullAnalysis.mode": "automatic",
     "files.watcherExclude": {
         "**/target": true
-    }
+    },
+    "java.dependency.packagePresentation": "hierarchical"
 }
