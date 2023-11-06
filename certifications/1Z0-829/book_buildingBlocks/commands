@@ -1,0 +1,16 @@
+javac pkta/*.java pktb/*.java
+
+javac -d mycompliedclasses pkta/*.java pktb/*.java
+
+javac -d mycompliedclasses pkta/*.java pktb/*.java
+
+//Simple
+java -cp mycompliedclasses App   (There are 3 ways to do the same)
+
+//Extreme case program with load from 3 difentes classpath
+java -cp ".:/mycompliedclasses1:/mycompliedclasses2:/poolOfJars/*.jar" myCorrectPkt.App   
+
+//Create jar -verbose -filename  -cretae
+jar -cvf my.jar mycompliedclasses/*.class
+
+PIC acronymun
