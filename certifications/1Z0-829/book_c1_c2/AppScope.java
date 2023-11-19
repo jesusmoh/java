@@ -3,11 +3,12 @@
 public class AppScope {
 
     int aa;//auto initilizated with 0
+    String hj;
    
     public final static void main(String[] args) {
 
         AppScope f= new AppScope();
-
+        String sdsd;
         int bb; // No initializated
 
         {var x=1;System.out.println("Hello World!"+x);}
@@ -38,7 +39,7 @@ public class AppScope {
          one=null;
          
 
-        System.out.println(three);
+        System.out.println(f.hj +sdsd);
          
     }
 }
