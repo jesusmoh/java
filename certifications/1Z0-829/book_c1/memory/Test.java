@@ -2,16 +2,13 @@
 public class Test {
   public final static void main(String... arguments) {
 
-    String a, b, c;
-    a = "a";
-    b = "b";
-    c = a;
-    b = c;
-    a = c;
-    c="h";
+    String one, two;
+    one = new String("A");
+    two = new String("B");
+    one = two; // in this line the objetc is elegible for GC
+    String three = one;
+    one = null;
 
-    System.out.println("?" + a);
-     System.out.println("?" + c);
   }
 
 }
