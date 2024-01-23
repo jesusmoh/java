@@ -1,0 +1,14 @@
+boolean     D->    false    S->    OS
+byte        D->    0        S->   -128/+127
+short       D->    0        S->   -32K/+32K
+int         D->    0        
+long        D->    0L
+float       D->    0.0f
+double      D->    0.0
+char        D->    \0000
+
+
+
+
+javac Case1.java 
+java -cp / *.java

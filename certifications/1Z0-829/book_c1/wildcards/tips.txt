@@ -1,0 +1,5 @@
+java.nio.*              // doesnt' has a Class, only works with Class exmaple 
+java.nio.*.*            //bath
+java.nio.files.Files.*  //you can't import methods
+
+java.nio.file.* // OK

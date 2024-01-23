@@ -1,0 +1,8 @@
+javac package/*.java                                  // compile all clases. no sub claces
+javac -d package/compileproyect package/*.java        // export all java classes compiled
+javac -d package/compileproyectbeta package/*.java    // export all java classes compiled
+
+
+java -cp package/compileproyect package/*.java        
+java -cp package/compileproyect/ solarsystem1.Saturno //launch class + package
+java -cp / Case1.java                                 // current folder + simple class
