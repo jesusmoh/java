@@ -1,9 +1,5 @@
 public class CasesIni {
-
-    // var t=4;
-
     public static void main(String[] args) {
-        int x;
         var d = new Dog();
         // d=45; error
         System.out.println("? " + d);
@@ -12,6 +8,5 @@ public class CasesIni {
         System.out.println("? " + d);
     }
 
-    static class Dog {
-    }
+    static class Dog {}
 }
