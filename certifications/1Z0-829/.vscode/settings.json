@@ -2,7 +2,7 @@
     "java.configuration.updateBuildConfiguration": "interactive",
     "java.dependency.packagePresentation": "hierarchical",
     "java.debug.settings.onBuildFailureProceed": true,
-    "CodeGPT.apiKey": "CodeGPT Plus Beta",
+    "CodeGPT.apiKey": "OpenAI",
     "java.format.settings.url": ".vscode/eclipse-java-google-style.xml",
     "[java]": {
         "editor.insertSpaces": true
