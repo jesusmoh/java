@@ -1,10 +1,6 @@
 public class PassinObj {
 
   public static void main(String[] args) {
-    String name = "Webby";
-    speak(name);
-    System.err.println(name);
-
     class P {
 
       String a;
