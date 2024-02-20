@@ -1,5 +1,5 @@
 package casec_sealed;
 
-public sealed class Equine extends Mamma permits Zebra {
+public sealed class Equine extends Mammal permits Zebra {
 
 }

@@ -1,4 +1,5 @@
 public interface IsColdBlooded {
+   
     boolean hasScales();
 
     default double getT() {
