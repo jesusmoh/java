@@ -1,4 +1,4 @@
-package book_c8;
+package book_c8.lambdaexpresions;
 
 public class CheckIfHopper implements CheckTrait {
     public boolean test(Animal a) {

@@ -1,4 +1,4 @@
-package book_c8;
+package book_c8.lambdaexpresions;
 
 public interface CheckTrait {
     boolean test(Animal a);

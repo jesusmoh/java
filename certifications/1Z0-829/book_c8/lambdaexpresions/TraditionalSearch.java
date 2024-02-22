@@ -1,4 +1,4 @@
-package book_c8;
+package book_c8.lambdaexpresions;
 
 import java.util.ArrayList;
 import java.util.List;
