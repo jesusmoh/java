@@ -1,5 +1,6 @@
 {
     "CodeGPT.apiKey": "CodeGPT Plus Beta",
     "java.configuration.updateBuildConfiguration": "automatic",
-    "java.debug.settings.onBuildFailureProceed": true
+    "java.debug.settings.onBuildFailureProceed": true,
+    "java.dependency.packagePresentation": "hierarchical"
 }
