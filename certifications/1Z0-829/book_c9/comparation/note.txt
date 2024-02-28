@@ -1,0 +1,5 @@
+When to Use Each:
+Use Comparable when the comparison logic is standard for a specific class and you want a 
+single natural sorting order.
+Use Comparator when you need more flexibility in defining different sorting orders for objects, 
+especially when dealing with third-party classes or when multiple sorting sequences are required.
