@@ -1,4 +1,3 @@
-package book_c10.streams;
 
 import java.util.Arrays;
 import java.util.List;
