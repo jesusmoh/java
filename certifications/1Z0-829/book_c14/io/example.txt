@@ -1,0 +1,3 @@
+I'm stream-oriented
+I'm blocking
+bye...

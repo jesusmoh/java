@@ -1,0 +1,11 @@
+//comiling module
+javac --module-path book_c12 -d book_c12 book_c12/zoo/animal/feeding/*.java book_c12/module-info.java
+
+//compiling classes
+javac --module-path book_c12 -d book_c12 book_c12/zoo/animal/feeding/*.java book_c12/*.java
+
+//execute
+java --module-path book_c12 --module zoo.animal.feeding/zoo.animal.feeding.Task
+
+
+javac --module-path book_c12 -d book_c12 book_c12/zoo/animal/feeding/*.java book_c12/module-info.java

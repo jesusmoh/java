@@ -1,0 +1,1 @@
+The main difference between Callable and Runnable interfaces in Java is that Callable can return a value, while Runnable cannot. Callable interface includes a call() method that returns a result and can throw checked exceptions, whereas the Runnable interface has a run() method that does not return a value and cannot throw checked exceptions

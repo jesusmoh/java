@@ -1,0 +1,3 @@
+I'm buffer-oriented
+I'm not blocking
+bye...
