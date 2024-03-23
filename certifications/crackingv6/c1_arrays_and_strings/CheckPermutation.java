@@ -19,12 +19,16 @@ public class CheckPermutation {
     // this approach is faster than the object approach, but it uses more memory.
     // the object approach uses less memory, but it is slower.
     // the object approach uses less memory, but it is slower.
+
     private static boolean checkPermutation(String s1, String s2) {
         if (s1 == null || s2 == null || s1.length() == 0 || s2.length() == 0 || s1.length() != s2.length()) {
             return false;
         }
-        var t = s1.chars().boxed().sorted().collect(Collectors.toList());
-        return t.containsAll(s2.chars().boxed().sorted().collect(Collectors.toList()));
+        var t = s1.chars().mapToObj(x -> (char) x).sorted().collect(Collectors.toList());
+        var t2 = s2.chars().mapToObj(x -> (char) x).sorted().collect(Collectors.toList());
+        System.out.println("" + t);
+        System.out.println("" + t2);
+        return t.equals(t2);
     }
 
     // big O(n) object aproach
