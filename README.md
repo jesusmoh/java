@@ -1,2 +1,5 @@
 # java
-java showcases(examples and tests)
+
+## Project Title
+
+The project aims to showcase a Java application with various features.
