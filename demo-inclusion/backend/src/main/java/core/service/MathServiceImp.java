@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import core.configuration.AppProperties;
 import core.exception.AppException;
 import core.model.dto.in.RequestKDTO;
 import core.model.dto.out.ResultKDTO;
@@ -19,10 +20,15 @@ import core.service.validator.IRequestKDTOValidatorService;
 @Service
 public class MathServiceImp implements IMathService {
 
-    Logger logger = LoggerFactory.getLogger(MathServiceImp.class);
+    private final AppProperties appProperties;
+    private final Logger logger = LoggerFactory.getLogger(MathServiceImp.class);
 
     @Autowired
     private IRequestKDTOValidatorService requestKDTOValidatorServiceImp;
+
+    public MathServiceImp(AppProperties appProperties) {
+        this.appProperties = appProperties;
+    }
 
     @Override
     public ResultKDTO findTheMaximumIntegerK(RequestKDTO dto) {
@@ -36,10 +42,11 @@ public class MathServiceImp implements IMathService {
 
             logger.info("Doing math...");
             final int k = (n - y) / x * x + y;
-            logger.info("For test case [" + x + " " + n + " " + y + "]: Maximum k = " + k);
+            logger.info("App Name: {}", appProperties.getBootstrapServer() + "Maximum k = " + k);
+
             return new ResultKDTO(k);
         } else {
-            logger.error("A new ERROR Message " + rv.getResult());
+            logger.info("App Name: {}", "A new ERROR Message " + rv.getResult());
             throw new AppException(rv.getResult(), true);
 
         }
