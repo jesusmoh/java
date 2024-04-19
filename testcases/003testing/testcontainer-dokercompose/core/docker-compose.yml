@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  test_service:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    networks:
+      - test_network
+
+networks:
+  test_network:
