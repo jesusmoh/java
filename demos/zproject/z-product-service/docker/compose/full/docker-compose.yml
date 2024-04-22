@@ -1,9 +1,8 @@
-version: '3.5'
+version: '3'
 
 services:
   mongodb:
     image: mongo:4.4.5
-    container_name: mongodb
     environment:
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=password
@@ -12,6 +11,24 @@ services:
     volumes:
       - mongodb-data:/data/db
     restart: always
+    networks:
+      - test_network
+
+  java_app:
+    image: img/z-product-service-1-0-0
+    ports:
+      - "8081:8081"
+    restart: always
+    depends_on:
+      - mongodb
+    networks:
+      - test_network
 
 volumes:
   mongodb-data:
+
+
+networks:
+  test_network:
+
+

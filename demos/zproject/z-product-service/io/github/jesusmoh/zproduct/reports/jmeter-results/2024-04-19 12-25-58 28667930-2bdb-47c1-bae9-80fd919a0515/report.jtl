@@ -1,0 +1,5 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1713500759154,23,HTTP Request,200,,Thread Group 1-2,text,true,,165,121,2,2,http://localhost:8081/ping,20,0,11
+1713500759154,23,HTTP Request,200,,Thread Group 1-1,text,true,,165,121,2,2,http://localhost:8081/ping,20,0,11
+1713500759179,4,HTTP Request,200,,Thread Group 1-2,text,true,,165,121,2,2,http://localhost:8081/ping,4,0,0
+1713500759179,4,HTTP Request,200,,Thread Group 1-1,text,true,,165,121,2,2,http://localhost:8081/ping,4,0,0
