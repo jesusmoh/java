@@ -27,12 +27,8 @@ public class ProductController {
 
     @GetMapping()
     public ResponseEntity<?> findAll() {
-        try {
-            var n = productService.listProducts();
-            return new ResponseEntity<>(n, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        var n = productService.listProducts();
+        return new ResponseEntity<>(n, HttpStatus.OK);
     }
 
     @PostMapping()
@@ -43,21 +39,13 @@ public class ProductController {
 
     @PutMapping()
     public ResponseEntity<?> update(@RequestBody ProductDTO dto) {
-        try {
-            var n = productService.updateProduct(dto);
-            return new ResponseEntity<>(mapperProductService.toDto(n), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        var n = productService.updateProduct(dto);
+        return new ResponseEntity<>(mapperProductService.toDto(n), HttpStatus.OK);
     }
 
     @DeleteMapping()
     public ResponseEntity<?> delete(@RequestBody ProductDTO dto) {
-        try {
-            var n = productService.deleteProduct(dto);
-            return new ResponseEntity<>(mapperProductService.toDto(n), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        var n = productService.deleteProduct(dto);
+        return new ResponseEntity<>(mapperProductService.toDto(n), HttpStatus.OK);
     }
 }
