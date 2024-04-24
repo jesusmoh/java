@@ -37,12 +37,8 @@ public class ProductController {
 
     @PostMapping()
     public ResponseEntity<?> create(@RequestBody ProductDTO dto) {
-        try {
-            var n = productService.createProduct(dto);
-            return new ResponseEntity<>(mapperProductService.toDto(n), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        var n = productService.createProduct(dto);
+        return new ResponseEntity<>(mapperProductService.toDto(n), HttpStatus.OK);
     }
 
     @PutMapping()

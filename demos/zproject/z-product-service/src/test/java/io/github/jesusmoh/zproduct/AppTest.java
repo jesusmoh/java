@@ -11,6 +11,7 @@ import java.time.Duration;
 import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import org.instancio.Instancio;
 import org.junit.jupiter.api.AfterAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -21,7 +22,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.testcontainers.containers.DockerComposeContainer;
 import org.testcontainers.containers.wait.strategy.Wait;
 
+import com.google.gson.Gson;
+
 import io.github.jesusmoh.zproduct.config.CustomTestListener;
+import io.github.jesusmoh.zproduct.model.dto.ProductDTO;
 import lombok.extern.slf4j.Slf4j;
 import static us.abstracta.jmeter.javadsl.JmeterDsl.htmlReporter;
 import static us.abstracta.jmeter.javadsl.JmeterDsl.httpSampler;
@@ -31,7 +35,7 @@ import us.abstracta.jmeter.javadsl.core.TestPlanStats;
 
 @ExtendWith(CustomTestListener.class)
 @Slf4j
-public class AppTestSuite {
+public class AppTest {
 
     private static Random rand = new Random();
     private static final String DOCKER_COMPOSE_FILE_PATH = "docker/compose/full/docker-compose.yml";
@@ -61,7 +65,7 @@ public class AppTestSuite {
     public void performanceTest() throws IOException {
         TestPlanStats stats = testPlan(
                 threadGroup(2, 2, httpSampler("http://localhost:8081/ping")),
-                htmlReporter("src/test/java/io/github/jesusmoh/zproduct/reports/ping-jmeter-results")).run();
+                htmlReporter("target/jmeter-reports/ping-jmeter-results")).run();
         log.error("performanceTestJMeter?");
         assertThat(stats.overall().sampleTimePercentile99()).isLessThan(Duration.ofSeconds(5));
     }
@@ -126,8 +130,42 @@ public class AppTestSuite {
         }
         int statusCode = response.statusCode();
         String responseBody = response.body();
+        log.info("<-> " + json);
+        log.info("<-> " + responseBody);
         assertEquals(200, statusCode);
         assertTrue(responseBody.contains("NewProduct"));
+    }
+
+    // Rest API test
+    @DisplayName("createProductRandomAndValidatorLayer")
+    @Test
+    public void testCreateProductRandomAndValidatorLayer() {
+        String url = "http://localhost:8081/api/products";
+        HttpClient client = HttpClient.newHttpClient();
+
+        ProductDTO dto = Instancio.of(ProductDTO.class).create();
+
+        Gson gson = new Gson();
+        String json = gson.toJson(dto);
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .POST(HttpRequest.BodyPublishers.ofString(
+                        json))
+                .header("Content-Type", "application/json")
+                .build();
+        HttpResponse<String> response = null;
+        try {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (IOException | InterruptedException e) {
+            log.error(e.getMessage());
+        }
+        int statusCode = response.statusCode();
+        String responseBody = response.body();
+
+        log.info("<-> " + json);
+        log.info("<-> " + responseBody);
+        assertEquals(422, statusCode);
+        assertTrue(responseBody.contains("doesn't have a correct value"));
     }
 
 }
