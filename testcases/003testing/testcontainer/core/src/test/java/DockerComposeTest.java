@@ -35,4 +35,22 @@ public class DockerComposeTest {
                 .statusCode(200)
                 .body(containsString("Welcome to nginx"));
     }
+
+    @Test
+    public void testServiceIsRunning1() {
+        given().when()
+                .get("http://localhost:8080")
+                .then()
+                .statusCode(200)
+                .body(containsString("Welcome to nginx"));
+    }
+
+    @Test
+    public void testServiceIsRunning2() {
+        given().when()
+                .get("http://localhost:8080")
+                .then()
+                .statusCode(200)
+                .body(containsString("Welcome to nginx"));
+    }
 }
