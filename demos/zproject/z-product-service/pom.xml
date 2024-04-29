@@ -13,7 +13,7 @@
 	<artifactId>z-product-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>z-product-service</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Demo project z-product-service</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
@@ -134,7 +134,8 @@
 						<outputFormat>HTML</outputFormat>
 					</outputFormats>
 					<targetClasses>
-						<param>io.github.jesusmoh.zproduct.*</param>
+						<param>io.github.jesusmoh.zproduct.services.validations.RangeValidator</param>
+						<param>io.github.jesusmoh.zproduct.model.dto.*</param>
 					</targetClasses>
 					<targetTests>
 						<param>io.github.jesusmoh.zproduct.*Test</param>

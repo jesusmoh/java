@@ -26,6 +26,7 @@ import com.google.gson.Gson;
 
 import io.github.jesusmoh.zproduct.config.CustomTestListener;
 import io.github.jesusmoh.zproduct.model.dto.ProductDTO;
+import io.github.jesusmoh.zproduct.services.validations.RangeValidator;
 import lombok.extern.slf4j.Slf4j;
 import static us.abstracta.jmeter.javadsl.JmeterDsl.htmlReporter;
 import static us.abstracta.jmeter.javadsl.JmeterDsl.httpSampler;
@@ -37,7 +38,14 @@ import us.abstracta.jmeter.javadsl.core.TestPlanStats;
 @Slf4j
 public class AppTest {
 
+    /*
+     * This test suite covers various aspects of the product service application,
+     * including integration with the Docker Compose (efimere environment), API
+     * endpoint testing, performance testing, mutation test and validation logic.
+     */
+
     private static Random rand = new Random();
+    private static RangeValidator cut;
     private static final String DOCKER_COMPOSE_FILE_PATH = "docker/compose/full/docker-compose.yml";
     private static final DockerComposeContainer environment = new DockerComposeContainer(
             new File(DOCKER_COMPOSE_FILE_PATH))
@@ -50,6 +58,7 @@ public class AppTest {
     @DisplayName("power on doker-compose enviroment")
     public static void setup() {
         environment.start();
+        cut = new RangeValidator();
     }
 
     @AfterAll
@@ -70,6 +79,7 @@ public class AppTest {
         assertThat(stats.overall().sampleTimePercentile99()).isLessThan(Duration.ofSeconds(5));
     }
 
+    @DisplayName("restApiTestPing")
     @Test
     public void testPing() throws IOException {
         String url = "http://localhost:8081/ping";
@@ -96,7 +106,7 @@ public class AppTest {
     }
 
     // Rest API test
-    @DisplayName("createProduct")
+    @DisplayName("restApiTestcreateProduct")
     @Test
     public void testCreateProduct() {
         String url = "http://localhost:8081/api/products";
@@ -106,7 +116,7 @@ public class AppTest {
         boolean status = rand.nextBoolean();
         var json = """
                 {
-                     "id": "2222",
+                     "id": "2322",
                      "name": "NewProduct",
                      "description": "This is a sample product description.",
                      "price": 29.99,
@@ -164,6 +174,30 @@ public class AppTest {
         log.info("<-> " + responseBody);
         assertEquals(422, statusCode);
         assertTrue(responseBody.contains("doesn't have a correct value"));
+    }
+
+    @Test
+    @DisplayName("Should return true given 50")
+    void fifty_isValid_returnsTrue() {
+        assertThat(cut.isValid(50)).isTrue();
+    }
+
+    @Test
+    @DisplayName("Should return false given 200")
+    void twoHundred_isValid_returnsFalse() {
+        assertThat(cut.isValid(200)).isFalse();
+    }
+
+    @Test
+    @DisplayName("Should return true given 100")
+    void hundred_isValid_returnsTrue() {
+        assertThat(cut.isValid(100)).isTrue();
+    }
+
+    @Test
+    @DisplayName("Should return false given 0")
+    void zero_isValid_returnsFalse() {
+        assertThat(cut.isValid(0)).isFalse();
     }
 
 }
