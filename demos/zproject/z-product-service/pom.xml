@@ -80,6 +80,10 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
+			<groupId>org.testcontainers</groupId>
+			<artifactId>junit-jupiter</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.pitest</groupId>
 			<artifactId>pitest</artifactId>
 			<version>1.16.0</version>
@@ -135,7 +139,6 @@
 					</outputFormats>
 					<targetClasses>
 						<param>io.github.jesusmoh.zproduct.services.validations.RangeValidator</param>
-						<param>io.github.jesusmoh.zproduct.model.dto.*</param>
 					</targetClasses>
 					<targetTests>
 						<param>io.github.jesusmoh.zproduct.*Test</param>

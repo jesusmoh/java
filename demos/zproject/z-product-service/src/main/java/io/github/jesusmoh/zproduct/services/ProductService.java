@@ -19,12 +19,27 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ProductService implements IProductService {
 
+    /*
+     * In this example, the orderRepository field is still final, ensuring
+     * immutability and security. The @Autowired annotation is used on the
+     * constructor, which allows Spring to inject an instance of IOrderRepository
+     * when creating an object of type MyService.
+     * 
+     * This approach provides a good balance between performance, security, and
+     * flexibility.
+     */
+
+    private final IProductRespository productRepository;
+    private final IMapperProductService mapperProductService;
+    private final ProductValidatorServiceImp productValidatorService;
+
     @Autowired
-    private IProductRespository productRepository;
-    @Autowired
-    private IMapperProductService mapperProductService;
-    @Autowired
-    ProductValidatorServiceImp productValidatorService;
+    public ProductService(IProductRespository productRepository, ProductValidatorServiceImp productValidatorService,
+            IMapperProductService mapperProductService) {
+        this.productRepository = productRepository;
+        this.productValidatorService = productValidatorService;
+        this.mapperProductService = mapperProductService;
+    }
 
     @Override
     public Product createProduct(ProductDTO dto) {

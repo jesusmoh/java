@@ -1,4 +1,3 @@
-
 package io.github.jesusmoh.zproduct;
 
 import java.io.File;
@@ -17,6 +16,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.testcontainers.containers.DockerComposeContainer;
@@ -38,139 +39,140 @@ import us.abstracta.jmeter.javadsl.core.TestPlanStats;
 @Slf4j
 public class AppTest {
 
-    /*
-     * This test suite covers various aspects of the product service application,
-     * including integration with the Docker Compose (efimere environment), API
-     * endpoint testing, performance testing, mutation test and validation logic.
-     */
-
-    private static Random rand = new Random();
+    private static final Random rand = new Random();
     private static RangeValidator cut;
+    private static final String DOCKER_IMAGE = "img/z-product-service-1-0-0";
+    private static final String DOCKER_FILE = "docker/Dockerfile.simple";
     private static final String DOCKER_COMPOSE_FILE_PATH = "docker/compose/full/docker-compose.yml";
+    private static final String MONGO_SERVICE_NAME = "mongodb";
+    private static final int MONGO_SERVICE_NAME_PORT = 27017;
+    private static final String JAVA_SERVICE_NAME = "java_app";
+    private static final int JAVA_SERVICE_NAME_PORT = 8081;
     private static final DockerComposeContainer environment = new DockerComposeContainer(
             new File(DOCKER_COMPOSE_FILE_PATH))
-            .withExposedService("java_app", 8081, Wait.forHttp("/ping"))
-            .withExposedService("mongodb", 27017);
-
-    // Docker enviroment start and stop
+            .withExposedService(JAVA_SERVICE_NAME, JAVA_SERVICE_NAME_PORT, Wait.forHttp("/ping"))
+            .withExposedService(MONGO_SERVICE_NAME, MONGO_SERVICE_NAME_PORT);
 
     @BeforeAll
-    @DisplayName("power on doker-compose enviroment")
+    @DisplayName("Build Docker image and start Docker Compose environment")
     public static void setup() {
-        environment.start();
+        buildDockerImage();
+        startDockerComposeEnvironment();
         cut = new RangeValidator();
     }
 
     @AfterAll
-    @DisplayName("power off doker-compose enviroment")
+    @DisplayName("Stop Docker Compose environment")
     public static void teardown() {
         environment.stop();
     }
 
-    // Perfomance Tests
+    private static void buildDockerImage() {
+        ProcessBuilder pb = new ProcessBuilder("docker", "build", "-f", DOCKER_FILE, "-t", DOCKER_IMAGE, ".");
+        pb.redirectOutput(ProcessBuilder.Redirect.INHERIT);
+        pb.redirectError(ProcessBuilder.Redirect.INHERIT);
+        try {
+            pb.start();
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
+        try {
+            Thread.sleep(8000); // optional: sleep for a short period
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
+    }
 
-    @DisplayName("performanceTestJMeter")
+    private static void startDockerComposeEnvironment() {
+        environment.start();
+    }
+
+    @DisplayName("Performance Test: Ping with JMeter")
     @Test
-    public void performanceTest() throws IOException {
+    @Order(1)
+    void performanceTestPingJMeter() throws IOException {
         TestPlanStats stats = testPlan(
                 threadGroup(2, 2, httpSampler("http://localhost:8081/ping")),
                 htmlReporter("target/jmeter-reports/ping-jmeter-results")).run();
-        log.error("performanceTestJMeter?");
+        log.error("Performance Test with JMeter");
         assertThat(stats.overall().sampleTimePercentile99()).isLessThan(Duration.ofSeconds(5));
     }
 
-    @DisplayName("restApiTestPing")
+    @DisplayName("REST API Test: Ping")
     @Test
-    public void testPing() throws IOException {
+    @Order(2)
+    void testPing() throws IOException, InterruptedException {
         String url = "http://localhost:8081/ping";
-
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
                 .GET()
                 .build();
 
-        HttpResponse<String> response = null;
-        try {
-            response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        } catch (IOException | InterruptedException e) {
-            log.error(e.getMessage());
-        }
-
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         int statusCode = response.statusCode();
         String responseBody = response.body();
 
-        // Add your assertions here based on the response
         assertEquals(200, statusCode);
         assertTrue(responseBody.contains("pong"));
     }
 
-    // Rest API test
-    @DisplayName("restApiTestcreateProduct")
+    @DisplayName("REST API Test: Create Product")
     @Test
-    public void testCreateProduct() {
+    @Order(3)
+    @RepeatedTest(value = 3, name = "{displayName} {currentRepetition}/{totalRepetitions}")
+    void testCreateProduct() throws IOException, InterruptedException {
         String url = "http://localhost:8081/api/products";
         HttpClient client = HttpClient.newHttpClient();
 
         int stock = rand.nextInt();
+        int id = rand.nextInt(3423, 6789);
         boolean status = rand.nextBoolean();
-        var json = """
+        String json = String.format("""
                 {
-                     "id": "2322",
+                     "id": %s,
                      "name": "NewProduct",
                      "description": "This is a sample product description.",
                      "price": 29.99,
                      "stock": %s,
                      "status": %s
                  }
-                 """.formatted(stock, status);
-
+                 """, id, stock, status);
+        log.info("<-> " + json);
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
                 .POST(HttpRequest.BodyPublishers.ofString(json))
                 .header("Content-Type", "application/json")
                 .build();
-        HttpResponse<String> response = null;
-        try {
-            response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        } catch (IOException | InterruptedException e) {
-            log.error(e.getMessage());
-        }
+
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         int statusCode = response.statusCode();
         String responseBody = response.body();
-        log.info("<-> " + json);
         log.info("<-> " + responseBody);
         assertEquals(200, statusCode);
         assertTrue(responseBody.contains("NewProduct"));
     }
 
-    // Rest API test
-    @DisplayName("createProductRandomAndValidatorLayer")
+    @DisplayName("Create Product Random and Validate Layer")
     @Test
-    public void testCreateProductRandomAndValidatorLayer() {
+    @Order(4)
+    void testCreateProductRandomAndValidatorLayer() throws IOException, InterruptedException {
         String url = "http://localhost:8081/api/products";
         HttpClient client = HttpClient.newHttpClient();
 
-        ProductDTO dto = Instancio.of(ProductDTO.class).create();
+        ProductDTO dto = Instancio.of(ProductDTO.class).create(); // Assuming ProductDTO has default constructor
 
         Gson gson = new Gson();
         String json = gson.toJson(dto);
+        log.info("<-> " + json);
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
-                .POST(HttpRequest.BodyPublishers.ofString(
-                        json))
+                .POST(HttpRequest.BodyPublishers.ofString(json))
                 .header("Content-Type", "application/json")
                 .build();
-        HttpResponse<String> response = null;
-        try {
-            response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        } catch (IOException | InterruptedException e) {
-            log.error(e.getMessage());
-        }
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         int statusCode = response.statusCode();
         String responseBody = response.body();
-
-        log.info("<-> " + json);
         log.info("<-> " + responseBody);
         assertEquals(422, statusCode);
         assertTrue(responseBody.contains("doesn't have a correct value"));
@@ -199,5 +201,4 @@ public class AppTest {
     void zero_isValid_returnsFalse() {
         assertThat(cut.isValid(0)).isFalse();
     }
-
 }
