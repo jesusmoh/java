@@ -1,4 +1,4 @@
-package io.github.jesusmoh.zproduct.model.dto.common;
+package io.github.jesusmoh.zproduct.model.dto;
 
 import lombok.Data;
 

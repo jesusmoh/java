@@ -25,12 +25,10 @@ public class DispatchFilter extends OncePerRequestFilter {
         long startTime = System.currentTimeMillis();
 
         // Process the request
-        log.info(uuid.concat("IN  <---"));
         filterChain.doFilter(request, response);
 
         long endTime = System.currentTimeMillis();
         long processingTime = endTime - startTime;
-        log.info(uuid.concat("OUT --->"));
         log.info(uuid.concat("IN/OUT processingTime : " + processingTime + " ms"));
     }
 }

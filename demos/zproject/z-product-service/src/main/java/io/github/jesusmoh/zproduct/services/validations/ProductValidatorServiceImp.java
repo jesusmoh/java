@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import io.github.jesusmoh.zproduct.model.dto.ProductDTO;
-import io.github.jesusmoh.zproduct.model.dto.common.ValidatorResultDTO;
+import io.github.jesusmoh.zproduct.model.dto.ValidatorResultDTO;
 import lombok.Data;
 
 @Service

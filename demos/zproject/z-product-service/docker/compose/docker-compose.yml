@@ -9,26 +9,26 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - mongodb-data-z-product:/data/db
+      - z-product-service-volumen:/data/db
     restart: always
     networks:
-      - test_network
+      - z-product-service-network
 
   java_app:
-    image: img/z-product-service-1-0-0
+    image: img/z-product-service-1-0-0-staged
     ports:
       - "8081:8081"
     restart: always
     depends_on:
       - mongodb
     networks:
-      - test_network
+      - z-product-service-network
 
 volumes:
-  mongodb-data-z-product:
+  z-product-service-volumen:
 
 
 networks:
-  test_network:
+  z-product-service-network:
 
 

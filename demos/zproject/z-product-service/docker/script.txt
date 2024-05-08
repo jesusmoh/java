@@ -1,2 +1,2 @@
-docker build -f docker/Dockerfile.simple -t img/z-product-service-1-0-0 .
-docker build -f docker/Dockerfile.staged -t img/z-product-service-1-0-0-staged .
+docker build -f dockerfile/Dockerfile.simple -t img/z-product-service-1-0-0 .
+docker build -f dockerfile/Dockerfile.staged -t img/z-product-service-1-0-0-staged .

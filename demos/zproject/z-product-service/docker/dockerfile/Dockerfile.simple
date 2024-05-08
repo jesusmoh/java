@@ -1,10 +1,7 @@
 # Use an official Java runtime as a parent image
-FROM openjdk:17-alpine
+FROM eclipse-temurin:17-jdk as build
 
-# user ! su
-RUN adduser -D uu
-
-USER uu
+RUN apt-get update && apt-get install -y
 
 VOLUME /workspace
 
@@ -12,7 +9,7 @@ ENV TZ=America/Miami
 
 ENV JAVA_OPTS="-Xms256m -Xmx256m -XX:+UseG1GC -XX:+UseStringDeduplication"
 
-ARG JAR_FILE=target/z-product-service-0.0.1-SNAPSHOT.jar
+ARG JAR_FILE=target/z-product-service-1.0.0-SNAPSHOT.jar
 
 ADD ${JAR_FILE} app.jar
 

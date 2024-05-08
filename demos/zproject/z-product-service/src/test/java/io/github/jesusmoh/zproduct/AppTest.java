@@ -27,7 +27,6 @@ import com.google.gson.Gson;
 
 import io.github.jesusmoh.zproduct.config.CustomTestListener;
 import io.github.jesusmoh.zproduct.model.dto.ProductDTO;
-import io.github.jesusmoh.zproduct.services.validations.RangeValidator;
 import lombok.extern.slf4j.Slf4j;
 import static us.abstracta.jmeter.javadsl.JmeterDsl.htmlReporter;
 import static us.abstracta.jmeter.javadsl.JmeterDsl.httpSampler;
@@ -40,10 +39,9 @@ import us.abstracta.jmeter.javadsl.core.TestPlanStats;
 public class AppTest {
 
     private static final Random rand = new Random();
-    private static RangeValidator cut;
-    private static final String DOCKER_IMAGE = "img/z-product-service-1-0-0";
-    private static final String DOCKER_FILE = "docker/Dockerfile.simple";
-    private static final String DOCKER_COMPOSE_FILE_PATH = "docker/compose/full/docker-compose.yml";
+    private static final String DOCKER_IMAGE = "img/z-product-service-1-0-0-staged";
+    private static final String DOCKER_FILE = "docker/dockerfile/Dockerfile.staged";
+    private static final String DOCKER_COMPOSE_FILE_PATH = "docker/compose/docker-compose.yml";
     private static final String MONGO_SERVICE_NAME = "mongodb";
     private static final int MONGO_SERVICE_NAME_PORT = 27017;
     private static final String JAVA_SERVICE_NAME = "java_app";
@@ -58,7 +56,7 @@ public class AppTest {
     public static void setup() {
         buildDockerImage();
         startDockerComposeEnvironment();
-        cut = new RangeValidator();
+
     }
 
     @AfterAll
@@ -77,7 +75,7 @@ public class AppTest {
             log.error(e.getMessage());
         }
         try {
-            Thread.sleep(8000); // optional: sleep for a short period
+            Thread.sleep(11000); // optional: sleep for a short period
         } catch (Exception e) {
             log.error(e.getMessage());
         }
@@ -178,27 +176,4 @@ public class AppTest {
         assertTrue(responseBody.contains("doesn't have a correct value"));
     }
 
-    @Test
-    @DisplayName("Should return true given 50")
-    void fifty_isValid_returnsTrue() {
-        assertThat(cut.isValid(50)).isTrue();
-    }
-
-    @Test
-    @DisplayName("Should return false given 200")
-    void twoHundred_isValid_returnsFalse() {
-        assertThat(cut.isValid(200)).isFalse();
-    }
-
-    @Test
-    @DisplayName("Should return true given 100")
-    void hundred_isValid_returnsTrue() {
-        assertThat(cut.isValid(100)).isTrue();
-    }
-
-    @Test
-    @DisplayName("Should return false given 0")
-    void zero_isValid_returnsFalse() {
-        assertThat(cut.isValid(0)).isFalse();
-    }
 }

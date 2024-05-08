@@ -13,8 +13,8 @@ public class MapperProductServiceImp implements IMapperProductService {
         return Product.builder()
                 .id(dto.getId())
                 .name(dto.getName())
+                .skuCode(dto.getSkuCode())
                 .price(dto.getPrice())
-                .stock(dto.getStock())
                 .status(dto.getStatus())
                 .description(dto.getDescription())
                 .build();
@@ -26,7 +26,7 @@ public class MapperProductServiceImp implements IMapperProductService {
                 .id(p.getId())
                 .name(p.getName())
                 .price(p.getPrice())
-                .stock(p.getStock())
+                .skuCode(p.getSkuCode())
                 .status(p.getStatus())
                 .description(p.getDescription())
                 .build();

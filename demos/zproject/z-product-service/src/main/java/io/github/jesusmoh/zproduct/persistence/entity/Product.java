@@ -18,11 +18,8 @@ public class Product {
     private String id;
     private String name;
     private String description;
+    private String skuCode;
     private Double price;
-    private Integer stock;
     private String status;
-    private String createAt;
-    private String updateAt;
-    private String createBy;
     private int delete;
 }

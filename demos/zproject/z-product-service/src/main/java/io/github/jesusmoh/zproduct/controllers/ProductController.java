@@ -19,11 +19,14 @@ import io.github.jesusmoh.zproduct.services.mappers.IMapperProductService;
 @RequestMapping("api/products")
 public class ProductController {
 
-    @Autowired
-    private IProductService productService;
+    private final IProductService productService;
+    private final IMapperProductService mapperProductService;
 
     @Autowired
-    private IMapperProductService mapperProductService;
+    public ProductController(IMapperProductService mapperProductService, IProductService productService) {
+        this.mapperProductService = mapperProductService;
+        this.productService = productService;
+    }
 
     @GetMapping()
     public ResponseEntity<?> findAll() {
