@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import io.github.jesusmoh.zorder.model.record.InventoryProductDTO;
 
-@FeignClient(value = "inventory", url = "http://localhost:8083")
+@FeignClient(value = "inventory", url = "http://lenovopc-local:8083")
 public interface IInventoryClient {
 
     @RequestMapping(value = "api/inventory/inStock", method = RequestMethod.GET)

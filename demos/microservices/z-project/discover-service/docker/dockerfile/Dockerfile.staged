@@ -1,0 +1,31 @@
+# syntax=docker/dockerfile:experimental
+
+# Build stage
+FROM eclipse-temurin:17-jdk-alpine AS build
+RUN apk add --no-cache maven
+WORKDIR /project
+COPY pom.xml /project
+RUN mvn dependency:go-offline
+COPY . /project
+RUN mvn clean package -DskipTests
+
+# Final stage
+FROM eclipse-temurin:17-jdk-alpine
+ENV TZ=America/Miami
+ENV JAVA_OPTS="-Xms256m -Xmx256m -XX:+UseG1GC -XX:+UseStringDeduplication"
+RUN apk add dumb-init
+RUN mkdir /app
+
+# Copy the JAR file from the build stage and this assumes that your dependencies are packaged in application.jar
+COPY --from=build /project/target/discover-service-0.0.1-SNAPSHOT.jar /app/discover-service-0.0.1-SNAPSHOT.jar
+
+# Create a new user and set permissions
+RUN addgroup -S zuser && adduser -S zuser -G zuser
+WORKDIR /app
+RUN chown -R zuser:zuser /app
+USER zuser
+
+EXPOSE 8080
+
+# Set the default command
+CMD "dumb-init" "java" "-jar" "discover-service-0.0.1-SNAPSHOT.jar"

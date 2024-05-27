@@ -13,11 +13,64 @@
         },
         {
             "type": "java",
-            "name": "Spring Boot-App<x-api-gateway>",
+            "name": "Spring Boot-App<z-product-service>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
-            "mainClass": "io.github.jesusmoh.xapigateway.App",
-            "projectName": "x-api-gateway",
+            "mainClass": "io.github.jesusmoh.zproduct.App",
+            "projectName": "z-product-service",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-App<z-order-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "io.github.jesusmoh.zorder.App",
+            "projectName": "z-order-service",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=41929 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=z-order-service"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-App<z-inventory-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "io.github.jesusmoh.zinventory.App",
+            "projectName": "z-inventory-service",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-App<discover-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.microservice.App",
+            "projectName": "discover-service",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=43705 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=discover-service"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-App<config-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.microservice.config.App",
+            "projectName": "config-service",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=37983 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=config-service"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-App<api-gateway>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "io.github.jesusmoh.apigateway.App",
+            "projectName": "api-gateway",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
         },

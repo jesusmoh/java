@@ -1,0 +1,31 @@
+version: '3.9'
+name: z-order-service-compose
+services:
+  postgres-master:
+    image: postgres:latest
+    container_name: postgres-z-order-service
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: db-z-order-service
+    volumes:
+      - z-order-service-volumen:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - z-order-service-network
+  javaapp:
+    image: img/z-order-service-0-0-1-staged
+    ports:
+      - "8082:8082"
+    restart: always
+    networks:
+      - z-order-service-network
+
+networks:
+  z-order-service-network:
+    driver: bridge
+
+volumes:
+  z-order-service-volumen:

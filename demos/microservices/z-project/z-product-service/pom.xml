@@ -2,106 +2,139 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<!-- Model version of the POM file -->
 	<modelVersion>4.0.0</modelVersion>
+
+	<!-- Parent project (Spring Boot) -->
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.2.4</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
+
+	<!-- Project coordinates -->
 	<groupId>io.github.jesusmoh</groupId>
 	<artifactId>z-product-service</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<name>z-product-service</name>
 	<description>Demo project z-product-service</description>
+
+	<!-- Properties -->
 	<properties>
+		<!-- Java version -->
 		<java.version>17</java.version>
 	</properties>
+
+	<!-- Dependencies -->
 	<dependencies>
-		<!-- Spring Boot dependencies -->
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
+			<!-- cloud-starter -->
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
+			<!-- Actuator for monitoring and management -->
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>
+			<!-- MongoDB database support -->
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<!-- Web application support -->
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
+			<!-- Devtools for development mode -->
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
+			<!-- Lombok for reducing boilerplate code -->
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+			<!-- Discorver service client -->
+		</dependency>
+
 		<!-- Test dependencies -->
 		<dependency>
 			<groupId>org.testcontainers</groupId>
 			<artifactId>testcontainers</artifactId>
 			<scope>test</scope>
+			<!-- Testcontainers for integration testing -->
 		</dependency>
 		<dependency>
 			<groupId>io.rest-assured</groupId>
 			<artifactId>rest-assured</artifactId>
 			<scope>test</scope>
+			<!-- Rest Assured for API testing -->
 		</dependency>
 		<dependency>
 			<groupId>us.abstracta.jmeter</groupId>
 			<artifactId>jmeter-java-dsl</artifactId>
 			<version>1.26</version>
 			<scope>test</scope>
+			<!-- JMeter for performance testing -->
 		</dependency>
 		<dependency>
 			<groupId>org.assertj</groupId>
 			<artifactId>assertj-core</artifactId>
 			<scope>test</scope>
+			<!-- AssertJ for assertions -->
 		</dependency>
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-api</artifactId>
 			<scope>test</scope>
+			<!-- JUnit Jupiter for unit testing -->
 		</dependency>
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-engine</artifactId>
 			<scope>test</scope>
+			<!-- JUnit Jupiter engine -->
 		</dependency>
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-params</artifactId>
 			<scope>test</scope>
+			<!-- JUnit Jupiter parameters -->
 		</dependency>
 		<dependency>
 			<groupId>org.testcontainers</groupId>
 			<artifactId>junit-jupiter</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.arcmutate</groupId>
-			<artifactId>arcmutate-spring</artifactId>
-			<version>1.0.0</version>
-			<scope>test</scope>
+			<!-- Testcontainers JUnit Jupiter support -->
 		</dependency>
 		<dependency>
 			<groupId>org.instancio</groupId>
 			<artifactId>instancio-core</artifactId>
 			<version>4.5.1</version>
 			<scope>test</scope>
+			<!-- Instancio for test data generation -->
 		</dependency>
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<scope>test</scope>
+			<!-- Gson for JSON serialization -->
 		</dependency>
+
+
 	</dependencies>
 
+	<!-- Build configuration -->
 	<build>
 		<plugins>
 			<plugin>
@@ -115,8 +148,21 @@
 						</exclude>
 					</excludes>
 				</configuration>
+				<!-- Spring Boot Maven plugin for building and running the application -->
 			</plugin>
-
 		</plugins>
 	</build>
+
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>2023.0.1</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 </project>

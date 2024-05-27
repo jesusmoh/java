@@ -1,0 +1,1 @@
+mvn clean && mvn package && docker build -f docker/dockerfile/Dockerfile.staged -t img/discover-service-0-0-1-staged .

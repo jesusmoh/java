@@ -1,30 +1,49 @@
 version: '3'
-
+name: z-product-service-compose
 services:
+  nginx:
+    image: nginx
+    ports:
+      - "9081:80"
+    volumes:
+      - ./nginx_conf:/etc/nginx/conf.d
+    depends_on:
+      - appjava
+    networks:
+      - z-product-service-network
+
   mongodb:
-    image: mongo:4.4.5
+    image: mongo:7.0.5
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=password
+      - MONGO_INITDB_DATABASE=db-z-product-service
     ports:
       - "27017:27017"
     volumes:
-      - ./docker-compose-data/db/:/data/db
+      - z-product-service-volumen:/data/db
     restart: always
     networks:
       - z-product-service-network
 
-  java_app_product:
+  appjava:
     image: img/z-product-service-1-0-0-staged
-    ports:
-      - "8081:8081"
+    environment:
+      - PORT=8081
     restart: always
     depends_on:
       - mongodb
     networks:
       - z-product-service-network
+    deploy:
+      mode: replicated
+      replicas: 3
 
 networks:
   z-product-service-network:
+
+volumes:
+  z-product-service-volumen:
+
 
 

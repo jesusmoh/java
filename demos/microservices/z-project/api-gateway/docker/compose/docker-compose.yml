@@ -1,4 +1,5 @@
 version: '3.8'
+name: api-gateway-compose
 services:
   keycloak-mysql:
     container_name: keycloak-mysql

@@ -1,0 +1,13 @@
+version: '3.8'
+name: config-service-compose
+services:
+  java_app_config:
+    image: img/config-service-1-0-0-staged
+    ports:
+      - "8888:8888"
+    restart: always
+    networks:
+      - config-service-network
+
+networks:
+  config-service-network:
