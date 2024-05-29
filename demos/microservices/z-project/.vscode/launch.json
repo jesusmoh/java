@@ -66,21 +66,11 @@
         },
         {
             "type": "java",
-            "name": "Spring Boot-App<api-gateway>",
+            "name": "Spring Boot-App<trace-service>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
-            "mainClass": "io.github.jesusmoh.apigateway.App",
-            "projectName": "api-gateway",
-            "args": "",
-            "envFile": "${workspaceFolder}/.env"
-        },
-        {
-            "type": "java",
-            "name": "Spring Boot-App<api-gateway>",
-            "request": "launch",
-            "cwd": "${workspaceFolder}",
-            "mainClass": "io.github.jesusmoh.xapigateway.App",
-            "projectName": "api-gateway",
+            "mainClass": "io.github.jesusmoh.traceservice.App",
+            "projectName": "trace-service",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
         }

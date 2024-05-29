@@ -1,3 +1,0 @@
-
-mvn clean && mvn package -Dmaven.test.skip && docker build -f docker/dockerfile/Dockerfile.staged -t img/z-order-service-0-0-1-staged .
-

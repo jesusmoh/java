@@ -1,4 +1,4 @@
-package io.github.jesusmoh.zproduct.common.util;
+package io.github.jesusmoh.core.common.util;
 
 import java.io.IOException;
 
@@ -17,21 +17,18 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 public class DispatchFilter extends OncePerRequestFilter {
 
-    private static String dispatchFilter = "DispatchFilter >> ";
-
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
+        final String uuid = LogAuditFactory.getKey().concat(" ");
         long startTime = System.currentTimeMillis();
-        final String data = RequestToJsonConverter.convertToJson(request);
 
         // Process the request
         filterChain.doFilter(request, response);
 
         long endTime = System.currentTimeMillis();
         long processingTime = endTime - startTime;
-
-        log.info(dispatchFilter.concat("IN/OUT : " + processingTime + " ms. Data >> ").concat(data));
+        log.info(uuid.concat("IN/OUT processingTime : " + processingTime + " ms"));
     }
 }

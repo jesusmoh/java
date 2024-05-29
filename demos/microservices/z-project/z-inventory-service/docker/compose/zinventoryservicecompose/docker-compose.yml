@@ -1,0 +1,31 @@
+version: '3.9'
+services:
+  postgres-master:
+    image: postgres:latest
+    container_name: postgres-z-inventory-service
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: db-z-inventory-service
+    volumes:
+      - z-inventory-service-volumen:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    networks:
+      - z-inventory-service-network
+
+  javaapp:
+    image: img/z-inventory-service-0-0-1-staged
+    ports:
+      - "8083:8083"
+    restart: always
+    networks:
+      - z-inventory-service-network
+
+networks:
+  z-inventory-service-network:
+    driver: bridge
+
+volumes:
+  z-inventory-service-volumen:

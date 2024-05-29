@@ -41,6 +41,7 @@ public class ProductService implements IProductService {
         this.mapperProductService = mapperProductService;
     }
 
+    // @NewSpan("createProduct")
     @Override
     public Product createProduct(ProductDTO dto) {
         var v = productValidatorService.validate(dto);

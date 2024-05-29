@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  java_app_gateway:
+    image: img/gateway-service-1-0-0-staged
+    ports:
+      - "8080:8080"
+    restart: always
+    networks:
+      - gateway-service-network
+
+networks:
+  gateway-service-network:

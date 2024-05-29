@@ -1,0 +1,49 @@
+version: '3'
+
+services:
+  nginx:
+    image: nginx
+    ports:
+      - "9081:80"
+    volumes:
+      - ./nginx_conf:/etc/nginx/conf.d
+    depends_on:
+      - appjava
+    networks:
+      - z-product-service-network
+
+  mongodb:
+    image: mongo:7.0.5
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=password
+      - MONGO_INITDB_DATABASE=db-z-product-service
+    ports:
+      - "27017:27017"
+    volumes:
+      - z-product-service-volumen:/data/db
+    restart: always
+    networks:
+      - z-product-service-network
+
+  appjava:
+    image: img/z-product-service-1-0-0-staged
+    environment:
+      - PORT=8081
+    restart: always
+    depends_on:
+      - mongodb
+    networks:
+      - z-product-service-network
+    deploy:
+      mode: replicated
+      replicas: 3
+
+networks:
+  z-product-service-network:
+
+volumes:
+  z-product-service-volumen:
+
+
+

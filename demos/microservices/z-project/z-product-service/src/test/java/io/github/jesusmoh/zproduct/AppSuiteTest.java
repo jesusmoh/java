@@ -41,11 +41,11 @@ public class AppSuiteTest {
     // Docker enviroment
     private static final String DOCKER_IMAGE = "img/z-product-service-1-0-0-staged";
     private static final String DOCKER_FILE = "docker/dockerfile/Dockerfile.staged";
-    private static final String DOCKER_COMPOSE_FILE_PATH = "docker/compose/docker-compose.yml";
+    private static final String DOCKER_COMPOSE_FILE_PATH = "docker/compose/zproductservicecompose/docker-compose.yml";
     private static final String MONGO_SERVICE_NAME = "mongodb";
     private static final int MONGO_SERVICE_NAME_PORT = 27017;
-    private static final String JAVA_SERVICE_NAME = "appjava";
-    private static final int JAVA_SERVICE_NAME_PORT = 8081;
+    private static final String JAVA_SERVICE_NAME = "nginx";
+    private static final int JAVA_SERVICE_NAME_PORT = 9081;
 
     // Url
     private static final String HTTP = "http://";
@@ -66,6 +66,7 @@ public class AppSuiteTest {
     public static void setup() {
         buildDockerImage();
         startDockerComposeEnvironment();
+
     }
 
     @AfterAll

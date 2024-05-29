@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    ports:
+      - "9411:9411"
+    restart: unless-stopped
+    networks:
+      - zipkin-network
+    environment:
+      - EUREKA_SERVER=http://lenovopc-local:8761/eureka
+
+networks:
+  zipkin-network:
+    driver: bridge

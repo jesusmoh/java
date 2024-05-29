@@ -25,6 +25,22 @@
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-observation</artifactId>
+			<!-- Micrometer for application metrics -->
+		</dependency>
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-tracing-bridge-brave</artifactId>
+			<!-- Micrometer tracing bridge for distributed tracing -->
+		</dependency>
+		<dependency>
+			<groupId>io.zipkin.reporter2</groupId>
+			<artifactId>zipkin-reporter-brave</artifactId>
+			<!-- Zipkin reporter for distributed tracing -->
+		</dependency>
+
 		<!-- Eureka client for service discovery -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
