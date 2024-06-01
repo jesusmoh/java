@@ -28,13 +28,3 @@ To deploy this project run
 ## Authors
 
 - [@jesusmoh](https://www.github.com/jesusmoh)
-
-## Deployment
-
-To deploy this project run
-
-```bash
-  npm run deploy
-```
-
-## Documentation
