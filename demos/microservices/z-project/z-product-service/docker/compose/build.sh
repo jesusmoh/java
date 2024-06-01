@@ -1,5 +1,7 @@
 #!/bin/bash
 
+docker-compose -f docker/compose/zproductservicecompose/docker-compose.yml down
+
 # Clean and package the Maven project
 mvn clean
 mvn package -Dmaven.test.skip

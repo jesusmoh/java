@@ -1,6 +1,7 @@
 package io.github.jesusmoh.zproduct.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -29,6 +30,7 @@ public class ProductController {
     }
 
     @GetMapping()
+    @Cacheable("z-product-service-findAll")
     public ResponseEntity<?> findAll() {
         var n = productService.listProducts();
         return new ResponseEntity<>(n, HttpStatus.OK);

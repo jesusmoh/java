@@ -25,7 +25,7 @@ WORKDIR /app
 RUN chown -R zuser:zuser /app
 USER zuser
 
-EXPOSE 8080
+EXPOSE 8077
 
 # Set the default command
 CMD "dumb-init" "java" "-jar" "gateway-service-0.0.1-SNAPSHOT.jar"
