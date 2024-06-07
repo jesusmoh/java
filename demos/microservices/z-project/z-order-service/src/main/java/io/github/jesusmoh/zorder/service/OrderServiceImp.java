@@ -27,16 +27,22 @@ public class OrderServiceImp implements IOrderService {
 		int finalQuantity = availableStock > requestedQuantity ? requestedQuantity : availableStock;
 
 		Order order = new Order();
+
 		order.setOrderNumber(dto.orderNumber());
+		order.setSkuCode(dto.skuCode());
 		if (finalQuantity > 0) {
 			order.setSkuCode(dto.skuCode());
 			order.setQuantity(finalQuantity);
 			order.setTotal(dto.price() * finalQuantity);
 			order.setStatus("PLACED");
 			orderRepository.save(order);
-			return new OrderPlacedDTO(order.getTotal(), order.getOrderNumber());
+			return new OrderPlacedDTO(order.getTotal(), order.getOrderNumber(), order.getStatus(), order.toString());
+		} else {
+			order.setStatus("NOT-PLACED");
+			order.setQuantity(0);
+			order.setTotal(0);
+			return new OrderPlacedDTO(0, order.getOrderNumber(), order.getStatus(), order.toString());
 		}
-		return new OrderPlacedDTO(-1, order.getOrderNumber());
 
 	}
 
