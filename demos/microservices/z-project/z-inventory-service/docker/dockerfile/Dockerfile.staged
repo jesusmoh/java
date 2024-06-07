@@ -25,7 +25,7 @@ WORKDIR /app
 RUN chown -R zuser:zuser /app
 USER zuser
 
-EXPOSE 8081
+EXPOSE 8083
 
 # Set the default command
 CMD "dumb-init" "java" "-jar" "z-inventory-service-0.0.1-SNAPSHOT.jar"

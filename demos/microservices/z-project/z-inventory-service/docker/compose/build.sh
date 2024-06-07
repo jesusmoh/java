@@ -1,4 +1,5 @@
 #!/bin/bash
+docker-compose -f docker/compose/zinventoryservicecompose/docker-compose.yml down
 
 # Clean and package the Maven project
 mvn clean

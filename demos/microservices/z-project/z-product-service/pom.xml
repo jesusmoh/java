@@ -88,6 +88,7 @@
 			<!-- Zipkin reporter for distributed tracing -->
 		</dependency>
 
+		<!-- Cache App : Propagation-->
 		<dependency>
 			<groupId>com.hazelcast</groupId>
 			<artifactId>hazelcast</artifactId>
